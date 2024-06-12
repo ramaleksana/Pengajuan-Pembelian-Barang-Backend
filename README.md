@@ -1,68 +1,115 @@
-# CodeIgniter 4 Application Starter
+# Aplikasi Pengajuan Pembelian Barang - Backend
 
-## What is CodeIgniter?
+Aplikasi ini adalah backend untuk sistem pengajuan pembelian barang yang dibangun menggunakan framework CodeIgniter 4. Proyek ini mencakup berbagai fitur dan API untuk mendukung frontend aplikasi.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Daftar Isi
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- [Tentang Proyek](#tentang-proyek)
+- [Fitur](#fitur)
+- [Prasyarat](#prasyarat)
+- [Instalasi](#instalasi)
+- [Konfigurasi](#konfigurasi)
+- [Penggunaan](#penggunaan)
+- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
+- [Kontak](#kontak)
+  
+## Tentang Proyek
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Proyek ini adalah aplikasi web untuk mengelola pengajuan pembelian barang. Proyek ini menyediakan berbagai API untuk mendukung fungsi-fungsi pada frontend aplikasi.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Fitur
 
-## Installation & updates
+1. **Autentikasi dan Otorisasi**
+   - Login
+   - Middleware untuk proteksi rute
+     
+2. **Manajemen Pengguna**
+   - CRUD pengguna
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+3. **Manajemen Data**
+   - API untuk mengelola data yang dibutuhkan aplikasi
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Prasyarat
 
-## Setup
+Pastikan Anda telah menginstal perangkat lunak berikut:
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+- [PHP](https://www.php.net/) versi 7.3 atau lebih baru
+- [Composer](https://getcomposer.org/)
+- [MySQL](https://www.mysql.com/) atau [MariaDB](https://mariadb.org/)
 
-## Important Change with index.php
+## Instalasi
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Berikut adalah langkah-langkah untuk menginstal proyek ini secara lokal.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+1. Clone repository ini:
 
-**Please** read the user guide for a better explanation of how CI4 works!
+   ```bash
+   git clone https://github.com/ramaleksana/Pengajuan-Pembelian-Barang-Backend.git
+   ```
 
-## Repository Management
+2. Masuk ke direktori proyek:
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+   ```bash
+   cd Pengajuan-Pembelian-Barang-Backend
+   ```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+3. Instal dependensi menggunakan Composer:
 
-## Server Requirements
+   ```bash
+   composer install
+   ```
+   
+4. Salin file .env.example menjadi .env dan sesuaikan konfigurasi yang diperlukan:
+   ```bash
+   cp .env.example .env
+   ```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## Konfigurasi
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+1. Sesuaikan konfigurasi database pada file .env:
+   ```plaintext
+     database.default.hostname = localhost
+     database.default.database = nama_database
+     database.default.username = nama_pengguna
+     database.default.password = kata_sandi
+     database.default.DBDriver = MySQLi
+   ```
 
-> [!WARNING]
-> The end of life date for PHP 7.4 was November 28, 2022.
-> The end of life date for PHP 8.0 was November 26, 2023.
-> If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> The end of life date for PHP 8.1 will be November 25, 2024.
+2. Tambahkan konfigurasi untuk JWT pada file .env:
+   ```plaintext
+   JWT_SECRET_KEY = your_secret_key
+   JWT_TTL = 60
+   ```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+3. Generate kunci enkripsi aplikasi:
+   ```bash
+   php spark key:generate
+   ```
+4. Migrasi dan seed database:
+   ```bash
+   php spark migrate
+   php spark db:seed
+   ```
+## Penggunaan
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Berikut adalah langkah-langkah untuk menjalankan proyek ini secara lokal.
+
+1. Jalankan server pengembangan:
+
+   ```bash
+   php spark serve
+   ```
+2. Aplikasi akan berjalan di http://localhost:8080.
+
+## Teknologi yang Digunakan
+
+- [CodeIgniter 4](https://codeigniter.com/)
+- [PHP](https://www.php.net/) versi 7.3 atau lebih baru
+- [Composer](https://getcomposer.org/)
+  
+## Dependensi
+- [Firebase/PHP-JWT](https://github.com/firebase/php-jwt)
+
+## Kontak
+- ramaleksana@gmail.com
+- https://github.com/ramaleksana/Pengajuan-Pembelian-Barang-Frontend

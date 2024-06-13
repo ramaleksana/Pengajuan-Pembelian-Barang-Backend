@@ -18,12 +18,32 @@ class PengajuanManagerController extends ResourceController
 
     public function index()
     {
-        //
+        $page = $this->request->getGet('page') ?? 1;
+        $limit = $this->request->getGet('limit') ?? 10;
+
+        $data = $this->model->getPaginatedData($limit, $page, ['status_on_manager' => 'Pending', 'status_on_finance' => 'Pending']);
+
+        return $this->respond($data);
+    }
+
+    public function show($id = null)
+    {
+        $data = $this->model->where(['status_on_manager' => 'Pending', 'status_on_finance' => 'Pending'])->find($id);
+        return $this->respond([
+            'success' => true,
+            'message' => 'Show data success',
+            'data' => $data,
+        ]);
     }
 
     public function history()
     {
-        //
+        $page = $this->request->getGet('page') ?? 1;
+        $limit = $this->request->getGet('limit') ?? 10;
+
+        $data = $this->model->getPaginatedData($limit, $page, ['status_on_manager' => 'Approved']);
+
+        return $this->respond($data);
     }
 
     public function decision($id = null)

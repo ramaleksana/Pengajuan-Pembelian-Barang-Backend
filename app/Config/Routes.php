@@ -35,12 +35,14 @@ $routes->group('api', static function (RouteCollection $routes) {
 
     $routes->group('pengajuan-manager', ['filter' => 'auth:Manager'], function ($routes) {
         $routes->get('/', 'PengajuanManagerController::index');
+        $routes->get('(:num)', 'PengajuanManagerController::show/$1');
         $routes->get('history', 'PengajuanManagerController::history');
         $routes->post('(:num)', 'PengajuanManagerController::decision/$1');
     });
 
     $routes->group('pengajuan-finance', ['filter' => 'auth:Finance'], function ($routes) {
         $routes->get('/', 'PengajuanFinanceController::index');
+        $routes->get('(:num)', 'PengajuanFinanceController::show/$1');
         $routes->get('history', 'PengajuanFinanceController::history');
         $routes->post('(:num)', 'PengajuanFinanceController::decision/$1');
     });
